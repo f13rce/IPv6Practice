@@ -111,8 +111,11 @@ def AskCharacteristics():
 			elif "/" in question[1]:
 				if answer == question[1].split("/")[0]:
 					print("Don't forget the subnet!")
+				else:
+					print("Incorrect.")
 				printHint = True
 			else:
+				print("Incorrect.")
 				printHint = True
 			print("")
 
