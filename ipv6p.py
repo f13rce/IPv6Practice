@@ -4,7 +4,7 @@
 #########################
 
 ### Import
-
+import random
 
 ### Globals
 
@@ -83,6 +83,8 @@ def AskCharacteristics():
 		("What does DAD stand for?", "duplicate address detection", "dup... addr.. det...")
 	]
 
+	random.shuffle(questions)
+
 	# Ask questions
 	q = 0
 	for question in questions:
@@ -96,21 +98,29 @@ def AskCharacteristics():
 			if printHint and question[2] != "":
 				print("\tHint: {}\n".format(question[2]))
 
-			answer = raw_input("> ")
-			if answer.replace("-", " ") == question[1]:
+			answer = input("> ")
+			answer = answer.replace("-", " ")
+			answer = answer.lower()
+			if answer == question[1]:
+				print("Correct!\n")
 				break
 			elif answer == "skip":
 				break
 			elif answer == "answer":
 				print("The answer is: {}".format(question[1]))
+			elif "/" in question[1]:
+				if answer == question[1].split("/")[0]:
+					print("Don't forget the subnet!")
+				printHint = True
 			else:
 				printHint = True
+			print("")
 
 # https://www.os3.nl/_media/2019-2020/courses/inr/ipv6.pdf
 
 ### Main
 def main():
-	a
+	AskCharacteristics()
 
 if __name__ == "__main__":
     # execute only if run as a script
